@@ -31,17 +31,17 @@ Usage:
 ```js
 const sourceCodeError = require("source-code-error")
 
-let code = `foo bar\n    baz quux\nfoo bar`
+const code = `foo bar\n    baz quux\nfoo bar`
 
 let report = sourceCodeError({
-    message: "Unknown error",
-    origin:  "somewhere",
-    file:    "foo.txt",
-    code:    code,
-    line:    2,
-    column:  5,
-    colors:  true,
-    newline: false
+    message:  "Unknown error",
+    origin:   "somewhere",
+    filename: "foo.txt",
+    code:     code,
+    line:     2,
+    column:   5,
+    colors:   true,
+    newline:  false
 })
 
 console.log(report)
@@ -50,7 +50,7 @@ console.log(report)
 Output:
 
 ```
-ERROR: file "foo.txt", line 2, column 5:
+ERROR: file "./foo.txt", line 2, column 5:
        Unknown error [somewhere]
   1 | foo bar
 > 2 |     baz quux
@@ -61,7 +61,7 @@ ERROR: file "foo.txt", line 2, column 5:
 Options
 -------
 
-The following options in the API exists:
+The following options in the API exist:
 
 - `type: string = "ERROR"`: type of error: ERROR or WARNING [optional].
 - `message: string = ""`: error description message [optional].
