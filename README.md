@@ -58,6 +58,23 @@ ERROR: file "foo.txt", line 2, column 5:
   3 | foo bar
 ```
 
+Options
+-------
+
+The following options in the API exists:
+
+- `type: string = "ERROR"`: type of error: ERROR or WARNING [optional].
+- `message: string = ""`: error description message [optional].
+- `origin: string = ""`: error origin indicator [optional].
+- `filename: string = ""`: source code filename [optional].
+- `code: string`: source code text [required].
+- `line: number`: source code line of error [required].
+- `column: number`: source code column of error [required].
+- `above: number = 2`: source code lines to show above error [optional].
+- `below: number = 2`: source code lines to show below error [optional].
+- `newline: boolean = true`: whether to close with trailing newline [optional].
+- `colors: boolean = true`: whether to use colors [optional].
+
 License
 -------
 
