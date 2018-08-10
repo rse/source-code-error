@@ -1,6 +1,6 @@
 {
     "name":        "source-code-error",
-    "version":     "0.9.6",
+    "version":     "0.9.7",
     "description": "Render Error of Source-Code",
     "keywords":    [ "error", "code", "frame" ],
     "main":        "source-code-error.js",
