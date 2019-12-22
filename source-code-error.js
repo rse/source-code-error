@@ -76,8 +76,8 @@ module.exports = (options = {}) => {
     let header = ""
     header += `${chalk.bold.red(options.type + ":")} `
     if (options.filename !== "") {
-        let dirname = path.dirname(options.filename) + path.sep
-        let basename = path.basename(options.filename)
+        const dirname = path.dirname(options.filename) + path.sep
+        const basename = path.basename(options.filename)
         header += `${chalk.red("file \"")}${chalk.red(dirname)}${chalk.red.bold(basename)}${chalk.red("\", ")}`
     }
     header += `${chalk.red("line ")}${chalk.red.bold(options.line)}` +
