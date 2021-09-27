@@ -16,3 +16,17 @@ let frame = errorFrame({
 
 console.log(frame)
 
+frame = errorFrame({
+    type:     "WARNING",
+    message:  "Unknown warning",
+    origin:   "somewhere",
+    filename: "foo.txt",
+    code:     code,
+    line:     2,
+    column:   5,
+    colors:   true,
+    newline:  false
+})
+
+console.log(frame)
+

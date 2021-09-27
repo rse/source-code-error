@@ -53,6 +53,9 @@ module.exports = (options = {}) => {
     if (options.column <= 0)
         throw new Error("options.column has to be configured")
 
+    /*  determine type related color  */
+    const color = (options.type === "ERROR" ? "red" : "yellow")
+
     /*  render code frame  */
     let frame = codeFrame(options.code, { start: { line: options.line, column: options.column } }, {
         linesAbove: options.above,
@@ -67,21 +70,21 @@ module.exports = (options = {}) => {
             .replace(/(\n)(\s*\d+\s+\|)/g, (_, m1, m2) =>
                 m1 + chalk.grey(m2))
             .replace(/(\|\s*)(\^)/, (_, m1, m2) =>
-                chalk.grey(m1) + chalk.bold.red(m2))
+                chalk.grey(m1) + chalk[color].bold(m2))
             .replace(/(\n)(>)(\s*\d+\s+\|)(.*)/, (_, m1, m2, m3, m4) =>
-                m1 + chalk.bold.red(m2) + chalk.grey(m3) + chalk.blue(m4))
+                m1 + chalk[color].bold(m2) + chalk.grey(m3) + chalk.blue(m4))
     }
 
     /*  generate header  */
     let header = ""
-    header += `${chalk.bold.red(options.type + ":")} `
+    header += `${chalk[color].bold(options.type + ":")} `
     if (options.filename !== "") {
         const dirname = path.dirname(options.filename) + path.sep
         const basename = path.basename(options.filename)
-        header += `${chalk.red("file \"")}${chalk.red(dirname)}${chalk.red.bold(basename)}${chalk.red("\", ")}`
+        header += `${chalk[color]("file \"")}${chalk[color](dirname)}${chalk[color].bold(basename)}${chalk[color]("\", ")}`
     }
-    header += `${chalk.red("line ")}${chalk.red.bold(options.line)}` +
-        `${chalk.red(", column ")}${chalk.red.bold(options.column)}:\n`
+    header += `${chalk[color]("line ")}${chalk[color].bold(options.line)}` +
+        `${chalk[color](", column ")}${chalk[color].bold(options.column)}:\n`
     if (options.message !== "" || options.origin !== "") {
         header += " ".repeat(options.type.length + 2)
         if (options.message !== "")
