@@ -67,21 +67,33 @@ module.exports = (options = {}) => {
             .replace(/(\n)(\s*\d+\s+\|)/g, (_, m1, m2) =>
                 m1 + chalk.grey(m2))
             .replace(/(\|\s*)(\^)/, (_, m1, m2) =>
-                chalk.grey(m1) + chalk.bold.red(m2))
+                (options.type === "WARNING") ? chalk.grey(m1) + chalk.bold.yellow(m2) : chalk.grey(m1) + chalk.bold.red(m2))
             .replace(/(\n)(>)(\s*\d+\s+\|)(.*)/, (_, m1, m2, m3, m4) =>
-                m1 + chalk.bold.red(m2) + chalk.grey(m3) + chalk.blue(m4))
+                (options.type === "WARNING") ? m1 + chalk.bold.yellow(m2) + chalk.grey(m3) + chalk.blue(m4) : m1 + chalk.bold.red(m2) + chalk.grey(m3) + chalk.blue(m4))
     }
 
     /*  generate header  */
     let header = ""
-    header += `${chalk.bold.red(options.type + ":")} `
-    if (options.filename !== "") {
-        const dirname = path.dirname(options.filename) + path.sep
-        const basename = path.basename(options.filename)
-        header += `${chalk.red("file \"")}${chalk.red(dirname)}${chalk.red.bold(basename)}${chalk.red("\", ")}`
+    if (options.type === "WARNING") {
+        header += `${chalk.bold.yellow(options.type + ":")} `
+        if (options.filename !== "") {
+            const dirname = path.dirname(options.filename) + path.sep
+            const basename = path.basename(options.filename)
+            header += `${chalk.yellow("file \"")}${chalk.yellow(dirname)}${chalk.yellow.bold(basename)}${chalk.yellow("\", ")}`
+        }
+        header += `${chalk.yellow("line ")}${chalk.yellow.bold(options.line)}` +
+            `${chalk.yellow(", column ")}${chalk.yellow.bold(options.column)}:\n`
     }
-    header += `${chalk.red("line ")}${chalk.red.bold(options.line)}` +
-        `${chalk.red(", column ")}${chalk.red.bold(options.column)}:\n`
+    else {
+        header += `${chalk.bold.red(options.type + ":")} `
+        if (options.filename !== "") {
+            const dirname = path.dirname(options.filename) + path.sep
+            const basename = path.basename(options.filename)
+            header += `${chalk.red("file \"")}${chalk.red(dirname)}${chalk.red.bold(basename)}${chalk.red("\", ")}`
+        }
+        header += `${chalk.red("line ")}${chalk.red.bold(options.line)}` +
+            `${chalk.red(", column ")}${chalk.red.bold(options.column)}:\n`
+    }
     if (options.message !== "" || options.origin !== "") {
         header += " ".repeat(options.type.length + 2)
         if (options.message !== "")
