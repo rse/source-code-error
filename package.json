@@ -7,7 +7,7 @@
     "license":     "MIT",
     "repository": {
         "type": "git",
-        "url":  "https://github.com/rse/source-code-error.git"
+        "url":  "git+https://github.com/rse/source-code-error.git"
     },
     "author": {
         "name":  "Dr. Ralf S. Engelschall",
