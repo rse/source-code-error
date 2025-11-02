@@ -4,6 +4,7 @@
     "description": "Render Error of Source-Code",
     "keywords":    [ "error", "code", "frame" ],
     "main":        "source-code-error.js",
+    "types":       "source-code-error.d.ts",
     "license":     "MIT",
     "repository": {
         "type": "git",
