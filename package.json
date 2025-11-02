@@ -17,21 +17,23 @@
     "homepage": "https://github.com/rse/source-code-error",
     "bugs":     "https://github.com/rse/source-code-error/issues",
     "dependencies": {
-        "@babel/code-frame":        "7.23.5",
+        "@babel/code-frame":        "7.27.1",
         "chalk":                    "4.1.2",
         "strip-ansi":               "6.0.0"
     },
     "devDependencies": {
-        "eslint":                   "8.57.0",
-        "eslint-config-standard":   "17.1.0",
-        "eslint-plugin-promise":    "6.1.1",
-        "eslint-plugin-import":     "2.29.1",
-        "eslint-plugin-node":       "11.1.0"
+        "eslint":                   "9.39.0",
+        "@eslint/js":               "9.39.0",
+        "eslint-plugin-n":          "17.23.1",
+        "eslint-plugin-promise":    "7.2.1",
+        "eslint-plugin-import":     "2.32.0",
+        "neostandard":              "0.12.2",
+        "globals":                  "16.5.0"
     },
     "engines": {
         "node":                     ">=18.0.0"
     },
     "scripts": {
-        "prepublishOnly": "eslint --config eslint.yaml source-code-error.js"
+        "prepublishOnly": "eslint --config eslint.mjs source-code-error.js"
     }
 }
